@@ -1,0 +1,1002 @@
+<title>Simon Weldensie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+:root {
+  --bg: #F6F5F2;
+  --surface: #FFFFFF;
+  --surface2: #EEEDE9;
+  --text: #0E0E0C;
+  --text2: #6B6960;
+  --text3: #A09C95;
+  --line: rgba(14,14,12,.09);
+  --line2: rgba(14,14,12,.15);
+  --accent: #1C3461;
+  --accent-tint: #EBF0F8;
+  --accent-mid: #3358A8;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --r: 8px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111110;
+    --surface: #1A1A18;
+    --surface2: #222220;
+    --text: #EDECEA;
+    --text2: #8A8880;
+    --text3: #5A5852;
+    --line: rgba(255,255,255,.07);
+    --line2: rgba(255,255,255,.13);
+    --accent: #5B83D4;
+    --accent-tint: rgba(91,131,212,.12);
+    --accent-mid: #7AA0E8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111110;
+  --surface: #1A1A18;
+  --surface2: #222220;
+  --text: #EDECEA;
+  --text2: #8A8880;
+  --text3: #5A5852;
+  --line: rgba(255,255,255,.07);
+  --line2: rgba(255,255,255,.13);
+  --accent: #5B83D4;
+  --accent-tint: rgba(91,131,212,.12);
+  --accent-mid: #7AA0E8;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-top: 56px;
+}
+
+.wrap { max-width: 1080px; margin-inline: auto; padding-inline: clamp(20px, 5vw, 48px); }
+
+/* NAV */
+.topnav {
+  position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0;
+  z-index: 200;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.topnav-inner {
+  max-width: 1080px; margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 48px);
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--text);
+  cursor: pointer;
+  background: none; border: none;
+  letter-spacing: -.01em;
+}
+.nav-links { display: flex; gap: 1.6em; align-items: center; }
+.nav-link {
+  font-size: .83rem; font-weight: 500;
+  color: var(--text2);
+  cursor: pointer;
+  background: none; border: none; font-family: var(--sans);
+  text-decoration: none;
+  transition: color .15s;
+  letter-spacing: -.01em;
+}
+.nav-link:hover { color: var(--text); }
+.nav-cta {
+  font-size: .8rem; font-weight: 500;
+  color: var(--surface);
+  background: var(--accent);
+  border-radius: var(--r);
+  padding: .42em 1em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .15s;
+  white-space: nowrap;
+}
+.nav-cta:hover { opacity: .85; }
+
+/* PAGE SYSTEM */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── HOME ── */
+.hero {
+  padding-block: clamp(64px, 9vw, 108px) clamp(48px, 6vw, 72px);
+  border-bottom: 1px solid var(--line);
+}
+.hero-kicker {
+  font-size: .8rem; font-weight: 500;
+  color: var(--accent);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 1.4em;
+}
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(3.2rem, 8vw, 6.4rem);
+  line-height: .9;
+  letter-spacing: -.025em;
+  margin-bottom: .5em;
+  text-wrap: balance;
+}
+.hero-name em { font-style: italic; }
+.hero-desc {
+  font-size: clamp(.97rem, 1.7vw, 1.1rem);
+  color: var(--text2);
+  max-width: 48ch;
+  line-height: 1.75;
+  margin-bottom: 2em;
+  font-weight: 300;
+}
+.hero-stats {
+  display: flex; flex-wrap: wrap; gap: 2.4em;
+  margin-bottom: 2.4em;
+  padding-top: 1.8em;
+  border-top: 1px solid var(--line);
+}
+.hstat-num {
+  font-family: var(--serif);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--text);
+  letter-spacing: -.03em;
+  display: block;
+  margin-bottom: .15em;
+}
+.hstat-label {
+  font-size: .78rem;
+  color: var(--text3);
+  font-weight: 500;
+  letter-spacing: -.01em;
+}
+.hero-ctas { display: flex; flex-wrap: wrap; gap: .65em; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: .4em;
+  font-size: .875rem; font-weight: 500;
+  border-radius: var(--r);
+  padding: .6em 1.25em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .15s, background .15s;
+  border: 1px solid transparent;
+  font-family: var(--sans);
+  letter-spacing: -.01em;
+}
+.cta-primary { background: var(--accent); color: #fff; }
+.cta-primary:hover { opacity: .87; }
+.cta-ghost { background: transparent; color: var(--text); border-color: var(--line2); }
+.cta-ghost:hover { background: var(--surface2); }
+
+/* WORK SECTION */
+.section {
+  padding-block: clamp(52px, 7vw, 80px);
+  border-bottom: 1px solid var(--line);
+}
+.section-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  flex-wrap: wrap; gap: 1em;
+  margin-bottom: 2em;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -.015em;
+  line-height: 1.1;
+}
+.section-sub { font-size: .83rem; color: var(--text3); }
+
+/* PROJECT CARD */
+.proj-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  cursor: pointer;
+  transition: border-color .18s;
+  overflow: hidden;
+  text-align: left;
+  font-family: var(--sans);
+  width: 100%;
+}
+.proj-card:hover { border-color: var(--accent); }
+.pc-visual {
+  background: var(--accent-tint);
+  min-height: 240px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 2em;
+  border-right: 1px solid var(--line);
+}
+.pc-icon-wrap {
+  width: 72px; height: 72px;
+  background: var(--accent);
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+}
+.pc-icon-wrap svg { color: #fff; }
+.pc-body { padding: 1.8em 2em; display: flex; flex-direction: column; justify-content: space-between; gap: 1.4em; }
+.pc-tag { font-size: .72rem; font-weight: 600; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; margin-bottom: .4em; }
+.pc-title { font-family: var(--serif); font-size: 1.7rem; color: var(--text); line-height: 1.1; letter-spacing: -.02em; margin-bottom: .4em; }
+.pc-desc { font-size: .9rem; color: var(--text2); line-height: 1.7; max-width: 44ch; }
+.pc-outcomes { display: flex; flex-wrap: wrap; gap: .7em; }
+.pc-outcome {
+  font-size: .8rem; color: var(--accent);
+  background: var(--accent-tint);
+  border-radius: 100px;
+  padding: .3em .9em;
+  font-weight: 500;
+}
+.pc-chips { display: flex; flex-wrap: wrap; gap: .45em; margin-top: auto; }
+.pc-chip {
+  font-size: .72rem; color: var(--text3);
+  border: 1px solid var(--line2);
+  border-radius: 100px; padding: .28em .75em;
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .proj-card { grid-template-columns: 1fr; }
+  .pc-visual { border-right: none; border-bottom: 1px solid var(--line); min-height: 140px; }
+}
+
+/* HOW I WORK */
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; margin-top: 1.8em; }
+.principle { background: var(--surface); padding: 1.6em 1.5em; }
+.pr-label { font-size: .78rem; font-weight: 600; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; margin-bottom: .65em; }
+.pr-title { font-family: var(--serif); font-size: 1.2rem; line-height: 1.2; color: var(--text); margin-bottom: .5em; letter-spacing: -.01em; }
+.pr-desc { font-size: .875rem; color: var(--text2); line-height: 1.7; }
+@media (max-width: 640px) { .principles { grid-template-columns: 1fr; } }
+
+/* CONTACT SECTION */
+.contact-section { padding-block: clamp(52px, 7vw, 88px); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3em; align-items: start; }
+.contact-headline { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 400; letter-spacing: -.02em; line-height: 1.05; margin-bottom: .6em; }
+.contact-desc { font-size: .92rem; color: var(--text2); line-height: 1.75; max-width: 40ch; }
+.contact-links { display: flex; flex-direction: column; gap: .7em; }
+.contact-item {
+  display: flex; align-items: center; gap: .85em;
+  padding: 1em 1.2em;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color .15s;
+  font-size: .9rem;
+  font-weight: 500;
+}
+.contact-item:hover { border-color: var(--accent); }
+.ci-icon { width: 36px; height: 36px; background: var(--accent-tint); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ci-icon svg { color: var(--accent); }
+.ci-text { display: flex; flex-direction: column; }
+.ci-label { font-size: .72rem; color: var(--text3); font-weight: 500; letter-spacing: .02em; text-transform: uppercase; }
+.ci-value { font-size: .88rem; color: var(--text); }
+@media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr; } }
+
+/* FOOTER */
+footer {
+  padding-block: clamp(24px, 4vw, 40px);
+  border-top: 1px solid var(--line);
+}
+.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1em; }
+.footer-name { font-family: var(--serif); font-size: 1.05rem; color: var(--text); }
+.footer-meta { font-size: .78rem; color: var(--text3); }
+
+/* ── CASE STUDY ── */
+.cs-page { min-height: 100vh; }
+.cs-hero {
+  padding-block: clamp(48px, 7vw, 80px);
+  border-bottom: 1px solid var(--line);
+}
+.cs-back {
+  display: inline-flex; align-items: center; gap: .45em;
+  font-size: .8rem; font-weight: 500;
+  color: var(--text3);
+  cursor: pointer;
+  background: none; border: none;
+  font-family: var(--sans);
+  margin-bottom: 2em;
+  transition: color .15s;
+  letter-spacing: -.01em;
+}
+.cs-back:hover { color: var(--text2); }
+.cs-kicker { font-size: .8rem; font-weight: 500; color: var(--accent); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 1em; }
+.cs-title {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  line-height: .92; letter-spacing: -.025em;
+  margin-bottom: .5em;
+}
+.cs-subtitle { font-size: clamp(.97rem, 1.7vw, 1.1rem); color: var(--text2); font-weight: 300; max-width: 52ch; line-height: 1.75; margin-bottom: 1.8em; }
+.thesis-block {
+  background: var(--accent-tint);
+  border: 1px solid var(--line2);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r);
+  padding: 1.1em 1.4em;
+  max-width: 58ch;
+}
+.thesis-block .tag { font-size: .72rem; font-weight: 600; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; display: block; margin-bottom: .45em; }
+.thesis-block p { font-size: .92rem; color: var(--text); line-height: 1.65; }
+
+/* TABS */
+.tab-nav {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  position: sticky; top: 56px; z-index: 10;
+}
+.tab-inner { max-width: 1080px; margin-inline: auto; padding-inline: clamp(20px,5vw,48px); display: flex; gap: 0; }
+.tab-btn {
+  font-size: .83rem; font-weight: 500;
+  color: var(--text3);
+  padding: .9em 0;
+  margin-right: 2em;
+  cursor: pointer;
+  background: none; border: none; font-family: var(--sans);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color .15s, border-color .15s;
+  letter-spacing: -.01em;
+}
+.tab-btn.active { color: var(--accent); border-color: var(--accent); }
+.tab-btn:hover:not(.active) { color: var(--text); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* CASE STUDY CONTENT */
+.cs-section { padding-block: clamp(40px, 5vw, 64px); border-bottom: 1px solid var(--line); }
+.cs-section:last-child { border-bottom: none; }
+.cs-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400; letter-spacing: -.015em; line-height: 1.1;
+  margin-bottom: .8em;
+}
+.cs-section p { font-size: .95rem; color: var(--text2); line-height: 1.8; max-width: 62ch; }
+.cs-section p + p { margin-top: .8em; }
+
+.cs-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; margin-top: 1.4em; }
+@media (max-width: 640px) { .cs-grid-2 { grid-template-columns: 1fr; } }
+
+.cs-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 1.3em 1.4em;
+}
+.cs-card .label { font-size: .72rem; font-weight: 600; color: var(--accent); letter-spacing: .05em; text-transform: uppercase; margin-bottom: .55em; }
+.cs-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: .4em; letter-spacing: -.01em; }
+.cs-card p { font-size: .875rem; color: var(--text2); line-height: 1.7; }
+
+.phases { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; margin-top: 1.4em; }
+.phase-row { background: var(--surface); padding: 1.3em 1.5em; display: grid; grid-template-columns: 80px 1fr auto; gap: 1.2em; align-items: start; }
+.phase-tag { font-size: .72rem; font-weight: 700; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; padding-top: .2em; }
+.phase-body h3 { font-size: .95rem; font-weight: 600; color: var(--text); margin-bottom: .3em; }
+.phase-body p { font-size: .875rem; color: var(--text2); line-height: 1.65; }
+.phase-status {
+  font-size: .7rem; font-weight: 600; border-radius: 100px; padding: .28em .85em; white-space: nowrap;
+  letter-spacing: .03em;
+}
+.status-active { background: rgba(28,52,97,.12); color: var(--accent); }
+.status-next { background: var(--surface2); color: var(--text3); }
+@media (max-width: 600px) { .phase-row { grid-template-columns: 1fr; } }
+
+/* PRD STYLES */
+.prd-body { max-width: 720px; padding-block: clamp(40px, 5vw, 64px); }
+.prd-step {
+  margin-bottom: 3em;
+  padding-bottom: 3em;
+  border-bottom: 1px solid var(--line);
+}
+.prd-step:last-child { border-bottom: none; }
+.prd-step-num { font-size: .72rem; font-weight: 700; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .5em; }
+.prd-step h2 { font-family: var(--serif); font-size: clamp(1.4rem, 2.5vw, 1.85rem); font-weight: 400; letter-spacing: -.015em; line-height: 1.1; margin-bottom: .75em; }
+.prd-step p { font-size: .925rem; color: var(--text2); line-height: 1.8; margin-bottom: .75em; max-width: 62ch; }
+.prd-step h3 { font-size: .95rem; font-weight: 600; color: var(--text); margin-top: 1.4em; margin-bottom: .4em; letter-spacing: -.01em; }
+.prd-step ul { padding-left: 1.2em; }
+.prd-step ul li { font-size: .9rem; color: var(--text2); line-height: 1.7; margin-bottom: .35em; }
+.prd-step .highlight {
+  background: var(--accent-tint);
+  border: 1px solid var(--line2);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r);
+  padding: .9em 1.2em;
+  margin-block: 1em;
+}
+.prd-step .highlight p { margin: 0; font-size: .88rem; }
+
+/* CLOSER (case study bottom) */
+.cs-closer { padding-block: clamp(52px, 6vw, 80px); text-align: center; background: var(--surface2); }
+.cs-closer h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 400; letter-spacing: -.02em; margin-bottom: .5em; }
+.cs-closer p { font-size: .95rem; color: var(--text2); max-width: 44ch; margin-inline: auto; margin-bottom: 1.6em; line-height: 1.75; }
+</style>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <button class="nav-logo" onclick="goHome()">Simon Weldensie</button>
+    <div class="nav-links">
+      <button class="nav-link" onclick="goHome(); setTimeout(()=>document.getElementById('work-section').scrollIntoView({behavior:'smooth'}),50)">Work</button>
+      <button class="nav-link" onclick="goHome(); setTimeout(()=>document.getElementById('contact-section').scrollIntoView({behavior:'smooth'}),50)">Contact</button>
+      <a class="nav-cta" href="mailto:s.weldensie@gmail.com">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HOME PAGE ── -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero-kicker">Product Manager · Toronto</p>
+      <h1 class="hero-name">I turn customer<br><em>friction</em> into<br>working products.</h1>
+      <p class="hero-desc">Six years in financial services, shipping regulated fintech from concept through compliance. I specialize in onboarding — reducing friction in identity verification flows where conversion rates are the product. Currently building Alfie — a macOS file intelligence agent designed for acquisition.</p>
+
+      <div class="hero-stats">
+        <div>
+          <span class="hstat-num">6+</span>
+          <span class="hstat-label">Years in financial services</span>
+        </div>
+        <div>
+          <span class="hstat-num">0→1</span>
+          <span class="hstat-label">Consumer fintech at Spendsafe</span>
+        </div>
+        <div>
+          <span class="hstat-num">macOS</span>
+          <span class="hstat-label">Alfie — in active development</span>
+        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <button class="cta-btn cta-primary" onclick="goAlfie()">View Alfie case study</button>
+        <a class="cta-btn cta-ghost" href="https://www.linkedin.com/in/simon-weldensie" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="section" id="work-section">
+    <div class="wrap">
+      <div class="section-header">
+        <h2 class="section-title">Work</h2>
+        <span class="section-sub">Selected projects</span>
+      </div>
+
+      <!-- Fintech card -->
+      <div class="proj-card" style="cursor:default;margin-bottom:1em;">
+        <div class="pc-visual">
+          <div class="pc-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="2"/>
+              <line x1="2" y1="10" x2="22" y2="10"/>
+            </svg>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div>
+            <p class="pc-tag">Consumer Fintech · iOS &amp; Android · Live</p>
+            <h2 class="pc-title">Family Prepaid Card App</h2>
+            <p class="pc-desc">Employee #1 at a Canadian consumer fintech company. Owned the full onboarding funnel across two distinct user types — parents through KYC/AML verification, children through a separate guardian-linked flow — and measured every drop-off point to improve completion rates. Led product lifecycle from concept through App Store launch across payment infrastructure and compliance.</p>
+          </div>
+          <div>
+            <div class="pc-outcomes">
+              <span class="pc-outcome">49% KYC completion rate</span>
+              <span class="pc-outcome">434 families onboarded</span>
+              <span class="pc-outcome">4.6 App Store rating</span>
+            </div>
+            <div class="pc-chips" style="margin-top:.9em;">
+              <span class="pc-chip">0→1 Launch</span>
+              <span class="pc-chip">KYC / AML</span>
+              <span class="pc-chip">Payment Infrastructure</span>
+              <span class="pc-chip">Dual-interface UX</span>
+              <span class="pc-chip">AWS QuickSight</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="proj-card" onclick="goAlfie()">
+        <div class="pc-visual">
+          <div class="pc-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div>
+            <p class="pc-tag">Personal project · macOS · In development</p>
+            <h2 class="pc-title">Alfie</h2>
+            <p class="pc-desc">An on-device AI file intelligence agent that learns how you name and organize files, then surfaces the right one before you search. Built for macOS acquisition — the behavioral dataset is the asset.</p>
+          </div>
+          <div>
+            <div class="pc-outcomes">
+              <span class="pc-outcome">Apple acquisition thesis</span>
+              <span class="pc-outcome">On-device · Privacy-first</span>
+            </div>
+            <div class="pc-chips" style="margin-top:.9em;">
+              <span class="pc-chip">Swift · SwiftUI</span>
+              <span class="pc-chip">Core ML</span>
+              <span class="pc-chip">FSEvents</span>
+              <span class="pc-chip">SQLite FTS5</span>
+              <span class="pc-chip">Claude API</span>
+            </div>
+          </div>
+        </div>
+      </button>
+      <p style="margin-top:1.2em;font-size:.83rem;color:var(--text3);text-align:center;">Additional professional work available on request — including a full case study from my current role in Canadian consumer fintech.</p>
+    </div>
+  </section>
+
+  <!-- HOW I WORK -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-header">
+        <h2 class="section-title">How I work</h2>
+      </div>
+      <div class="principles">
+        <div class="principle">
+          <p class="pr-label">Start with the friction</p>
+          <h3 class="pr-title">Problems over solutions</h3>
+          <p class="pr-desc">I spend longer than most on problem definition — mapping who's affected, where the friction actually lives, and what "solved" means before any feature discussion starts.</p>
+        </div>
+        <div class="principle">
+          <p class="pr-label">Compliance as a feature</p>
+          <h3 class="pr-title">Build for regulated environments</h3>
+          <p class="pr-desc">Six years in financial services means I think about compliance architecture from day one. Privacy, data residency, and regulatory exposure aren't afterthoughts — they're design constraints.</p>
+        </div>
+        <div class="principle">
+          <p class="pr-label">Measure the funnel</p>
+          <h3 class="pr-title">Conversion is the product</h3>
+          <p class="pr-desc">In regulated onboarding, every step is a drop-off risk. I instrument flows before they ship, define success metrics at the spec stage, and treat funnel data as the primary signal for what gets prioritized next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact-section">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <h2 class="contact-headline">Let's talk<br>product.</h2>
+          <p class="contact-desc">I'm open to PM roles at companies where rigor and speed aren't in conflict — fintech, AI products, and platforms that touch real people's daily lives.</p>
+        </div>
+        <div class="contact-links">
+          <div class="contact-item">
+            <div class="ci-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="ci-text">
+              <span class="ci-label">Email</span>
+              <span class="ci-value">s.weldensie@gmail.com</span>
+            </div>
+          </div>
+          <a class="contact-item" href="https://www.linkedin.com/in/simon-weldensie" target="_blank" rel="noopener">
+            <div class="ci-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </div>
+            <div class="ci-text">
+              <span class="ci-label">LinkedIn</span>
+              <span class="ci-value">simon-weldensie</span>
+            </div>
+          </a>
+          <div class="contact-item">
+            <div class="ci-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="ci-text">
+              <span class="ci-label">Location</span>
+              <span class="ci-value">Greater Toronto Area, Canada</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <span class="footer-name">Simon Weldensie</span>
+        <span class="footer-meta">Product Manager · Toronto</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ── ALFIE CASE STUDY ── -->
+<div id="page-alfie" class="page cs-page">
+
+  <!-- CS HERO -->
+  <div class="cs-hero">
+    <div class="wrap">
+      <button class="cs-back" onclick="goHome()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        All projects
+      </button>
+      <p class="cs-kicker">Personal project · macOS · In development</p>
+      <h1 class="cs-title">Alfie</h1>
+      <p class="cs-subtitle">An on-device AI file intelligence agent that learns how you name and organize files — built with an Apple acquisition thesis at its core.</p>
+      <div class="thesis-block">
+        <span class="tag">Core thesis</span>
+        <p>The behavioral dataset Alfie collects — failed searches mapped to correct files, rename decisions, folder choices — is the irreplaceable acquisition asset. The app is the collection vehicle.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tab-nav">
+    <div class="tab-inner">
+      <button class="tab-btn active" onclick="setTab('t-case',this)">Case Study</button>
+      <button class="tab-btn" onclick="setTab('t-prd',this)">Full PRD</button>
+    </div>
+  </div>
+
+  <!-- CASE STUDY TAB -->
+  <div id="t-case" class="tab-panel active">
+
+    <div class="cs-section">
+      <div class="wrap">
+        <h2>The problem</h2>
+        <p>On macOS, files accumulate over years across downloads, email attachments, cloud syncs, and project exports. The result: a personal file system that no longer reflects how you actually think about your work.</p>
+        <p>Spotlight searches fail because file names don't match how you'd describe them today. Finder's folder hierarchy reflects the logic you used three years ago. The gap between "how I'd search for this" and "how this file is actually named" widens with every new document.</p>
+        <div class="cs-grid-2">
+          <div class="cs-card">
+            <p class="label">The friction</p>
+            <h3>Semantic mismatch</h3>
+            <p>You search for "Q3 investor update" but the file is named "deck_final_v3_REAL.pptx". No search engine can close that gap without behavioral context.</p>
+          </div>
+          <div class="cs-card">
+            <p class="label">The gap</p>
+            <h3>No one has solved it natively</h3>
+            <p>macOS tools solve indexing and organization separately. No product connects failed search intent to successful file retrieval to learn from the delta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="wrap">
+        <h2>The insight</h2>
+        <p>The behavioral gap between how people search and how files are named is a dataset problem — not a search algorithm problem. Every failed search followed by a successful manual retrieval is a labeled training pair.</p>
+        <p>Alfie's core insight: collect that dataset at scale, on-device, and you've built something Apple can't replicate from their own telemetry. Apple has file access. They don't have intent-labeled file access.</p>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="wrap">
+        <h2>Product design</h2>
+        <p>Alfie is a macOS-native app that runs quietly in the background, watches the file system, and builds an on-device intent graph. Three principles drove every design decision:</p>
+        <div class="cs-grid-2">
+          <div class="cs-card">
+            <p class="label">Principle 1</p>
+            <h3>Feel like macOS, not an agent</h3>
+            <p>The product integrates with Spotlight, Quick Look, and the Finder toolbar. It shouldn't feel like AI software — it should feel like macOS got smarter.</p>
+          </div>
+          <div class="cs-card">
+            <p class="label">Principle 2</p>
+            <h3>Privacy by architecture</h3>
+            <p>All inference runs on-device via Core ML and Apple's Neural Engine. The Claude API receives only on-device-generated metadata summaries — never raw file content.</p>
+          </div>
+          <div class="cs-card">
+            <p class="label">Principle 3</p>
+            <h3>Never touch a file without confirmation</h3>
+            <p>Alfie suggests. The user decides. Every rename, move, and organization action requires explicit approval — the dataset is built from consent, not automation.</p>
+          </div>
+          <div class="cs-card">
+            <p class="label">Principle 4</p>
+            <h3>The dataset is the moat</h3>
+            <p>Features can be copied. A corpus of 10M+ failed search → correct file mappings, collected with user consent, cannot. Product decisions prioritize dataset quality over feature count.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="wrap">
+        <h2>Architecture</h2>
+        <p>The technical architecture is designed for two things: acquisition readiness and privacy compliance. Everything inference-related runs on the device; the intent graph never leaves.</p>
+        <div class="cs-grid-2">
+          <div class="cs-card">
+            <p class="label">File intelligence</p>
+            <h3>FSEvents + SQLite FTS5</h3>
+            <p>Real-time file system monitoring feeds a full-text search index with content fingerprinting for duplicate detection.</p>
+          </div>
+          <div class="cs-card">
+            <p class="label">On-device AI</p>
+            <h3>Core ML + Vision</h3>
+            <p>Apple Silicon Neural Engine runs classification and OCR locally. No file content leaves the device.</p>
+          </div>
+          <div class="cs-card">
+            <p class="label">Intent graph</p>
+            <h3>Three-table SQLite schema</h3>
+            <p>Files, interactions, and preferences — the behavioral dataset that grows with every Alfie session.</p>
+          </div>
+          <div class="cs-card">
+            <p class="label">Cloud intelligence</p>
+            <h3>Claude API (metadata-only)</h3>
+            <p>Semantic suggestions use Claude for natural language understanding, but only receive on-device-generated summaries, never file contents.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="wrap">
+        <h2>Roadmap</h2>
+        <div class="phases">
+          <div class="phase-row">
+            <span class="phase-tag">Phase 1</span>
+            <div class="phase-body">
+              <h3>Intelligence Foundation</h3>
+              <p>FSEvents monitoring, SQLite FTS5 index, Apple Vision OCR, content fingerprinting, Spotlight Extension. Core intent graph begins collecting data.</p>
+            </div>
+            <span class="phase-status status-active">Active</span>
+          </div>
+          <div class="phase-row">
+            <span class="phase-tag">Phase 2</span>
+            <div class="phase-body">
+              <h3>Behavioral Learning</h3>
+              <p>Rename assistant, smart folder suggestions, duplicate resolution, basic proactive surfacing. First external beta users.</p>
+            </div>
+            <span class="phase-status status-next">Next</span>
+          </div>
+          <div class="phase-row">
+            <span class="phase-tag">Phase 3</span>
+            <div class="phase-body">
+              <h3>On-Device Model</h3>
+              <p>Fine-tuned Core ML model trained on aggregated (anonymized) intent graph data. iPhone Files integration via FileProvider API.</p>
+            </div>
+            <span class="phase-status status-next">Planned</span>
+          </div>
+          <div class="phase-row">
+            <span class="phase-tag">Phase 4</span>
+            <div class="phase-body">
+              <h3>Acquisition Readiness</h3>
+              <p>10,000+ user dataset milestone. Agentic commerce integration. Acquisition conversation triggered.</p>
+            </div>
+            <span class="phase-status status-next">Planned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-closer">
+      <div class="wrap">
+        <h2>Built to be acquired,<br>designed to earn it.</h2>
+        <p>Alfie's value to Apple isn't the feature set — it's the behavioral dataset no amount of internal research can replicate.</p>
+        <div class="hero-ctas" style="justify-content:center;">
+          <button class="cta-btn cta-primary" onclick="setTab('t-prd', document.querySelectorAll('.tab-btn')[1])">Read the full PRD</button>
+          <a class="cta-btn cta-ghost" href="mailto:s.weldensie@gmail.com">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRD TAB -->
+  <div id="t-prd" class="tab-panel">
+    <div class="wrap">
+      <div class="prd-body">
+
+        <div class="prd-step">
+          <p class="prd-step-num">Step 1</p>
+          <h2>The Problem We're Solving</h2>
+          <p>Most people's file systems are a reflection of how they organized things years ago, not how they think about their work today. Downloads pile up. Email attachments land wherever the OS decides. Project folders branch into sub-folders that made sense at the time.</p>
+          <p>The result: finding a specific file requires remembering not just what the file contains, but what you named it, when you saved it, and which folder hierarchy you were using at that moment in time. Spotlight helps — but only when your search terms match your naming convention. They rarely do.</p>
+          <div class="highlight">
+            <p>The root problem: there is no product on macOS that bridges the gap between "how I think about this file today" and "how this file was named and stored." Alfie closes that gap.</p>
+          </div>
+          <h3>Core use cases</h3>
+          <ul>
+            <li>Finding a file you know exists but can't locate by name</li>
+            <li>Discovering duplicates from years of saving "final" versions</li>
+            <li>Getting suggestions to rename or reorganize files so future searches work</li>
+            <li>Understanding what's taking up space and why</li>
+            <li>Knowing which files are stale, redundant, or worth archiving</li>
+          </ul>
+        </div>
+
+        <div class="prd-step">
+          <p class="prd-step-num">Step 2</p>
+          <h2>Target User</h2>
+          <p>Alfie is for knowledge workers who use macOS seriously — people who generate, receive, and manage large volumes of documents across professional and personal contexts.</p>
+          <p>The target user is not defined by profession. They're defined by behavior: they've had the experience of knowing a file exists and failing to find it. That experience is nearly universal among people who've used a computer for more than three years.</p>
+          <h3>Primary persona signals</h3>
+          <ul>
+            <li>3+ years of accumulated files across multiple contexts (work, personal, side projects)</li>
+            <li>Frequent document creation — writing, spreadsheets, presentations, PDFs</li>
+            <li>Has experienced "I know this file exists" frustration at least monthly</li>
+            <li>Values their time and is willing to pay for tools that save it</li>
+            <li>Not particularly invested in manual file organization — they don't want to curate, they want to find</li>
+          </ul>
+          <div class="highlight">
+            <p>Secondary audience: Apple itself. Alfie's design explicitly targets acquisition. The behavioral dataset Alfie builds is the product Apple cannot build internally — user-consented, intent-labeled file interaction data at scale.</p>
+          </div>
+        </div>
+
+        <div class="prd-step">
+          <p class="prd-step-num">Step 3</p>
+          <h2>Core Features</h2>
+          <h3>Semantic file search</h3>
+          <p>Natural language search that understands intent, not just keywords. "The proposal I sent to the Toronto client in March" resolves to the correct file even if it's named "TOR_proposal_draft4.docx".</p>
+          <h3>Rename assistant</h3>
+          <p>Alfie observes how you find files and suggests renames that align with how you'd search for them. Every suggestion requires explicit user approval — Alfie never renames automatically.</p>
+          <h3>Smart folder suggestions</h3>
+          <p>Based on observed file patterns, Alfie recommends folder structures that match your actual working behavior, not generic templates.</p>
+          <h3>Duplicate detection</h3>
+          <p>Content fingerprinting identifies files with identical or near-identical content regardless of name. Surfaces them for user review and consolidation.</p>
+          <h3>Proactive surfacing</h3>
+          <p>Alfie notices when you're working on something and surfaces related files you haven't opened recently — the brief from last quarter, the template you always re-create.</p>
+          <h3>Optimization score</h3>
+          <p>A dashboard metric that reflects the health of your file system: duplicates, unnamed files, stale downloads, files that have been searched for but not found. Improves as Alfie learns and as the user acts on suggestions.</p>
+        </div>
+
+        <div class="prd-step">
+          <p class="prd-step-num">Step 4</p>
+          <h2>Technical Architecture</h2>
+          <h3>File system layer</h3>
+          <ul>
+            <li><strong>FSEvents API</strong> — real-time monitoring of file system changes without polling</li>
+            <li><strong>SQLite with FTS5</strong> — on-device full-text search index, updated continuously</li>
+            <li><strong>CryptoKit fingerprinting</strong> — content hashing for duplicate detection</li>
+          </ul>
+          <h3>Intelligence layer</h3>
+          <ul>
+            <li><strong>Apple Vision framework</strong> — on-device OCR for scanned PDFs and image-based files</li>
+            <li><strong>Core ML</strong> — file classification and intent prediction, runs on Neural Engine</li>
+            <li><strong>Claude API</strong> — semantic understanding using on-device-generated summaries only; raw file content never transmitted</li>
+          </ul>
+          <h3>Intent graph (the acquisition asset)</h3>
+          <ul>
+            <li><strong>files table</strong> — indexed file metadata, content summaries, tags</li>
+            <li><strong>interactions table</strong> — every search query, open, rename, move, with timestamps</li>
+            <li><strong>preferences table</strong> — inferred user patterns, naming conventions, folder logic</li>
+          </ul>
+          <h3>OS integration</h3>
+          <ul>
+            <li><strong>Spotlight Extension API</strong> — Alfie results appear natively in Spotlight</li>
+            <li><strong>Quick Look Extension</strong> — AI-generated preview panel in Finder</li>
+            <li><strong>FileProvider API</strong> — iPhone Files app integration (Phase 3)</li>
+            <li><strong>WidgetKit + Handoff</strong> — cross-device presence (Phase 3)</li>
+          </ul>
+          <div class="highlight">
+            <p>Security constraint: The Claude API receives only on-device-generated metadata summaries. File names, sizes, and AI-generated descriptions are permitted. Raw file contents are never transmitted to any external service.</p>
+          </div>
+        </div>
+
+        <div class="prd-step">
+          <p class="prd-step-num">Step 5</p>
+          <h2>Compliance and Privacy</h2>
+          <p>Consumer file management operates in a regulatory gray area — personal files can contain sensitive personal and financial data without the user necessarily recognizing it. Alfie's architecture is designed to make privacy a feature, not just a policy.</p>
+          <h3>Architecture-level controls</h3>
+          <ul>
+            <li>All file content analysis runs on-device; no file content transmitted externally</li>
+            <li>Intent graph data stored locally; never synced to Alfie servers in identifiable form</li>
+            <li>Aggregated, anonymized behavioral signals are the only data that leaves the device — and only with explicit user consent at onboarding</li>
+          </ul>
+          <h3>User-level controls</h3>
+          <ul>
+            <li>No automatic file operations — every rename, move, and organization action requires explicit user approval</li>
+            <li>Folder exclusions: users can exclude any directory from Alfie's index</li>
+            <li>Full data export and deletion at any time</li>
+            <li>Privacy policy written and published before any external beta</li>
+          </ul>
+          <h3>Distribution strategy</h3>
+          <p>Initial distribution outside the Mac App Store (direct download, like Hazel and CleanMyMac) to avoid App Store sandboxing restrictions that would prevent full FSEvents access. App Store submission follows once the permission model is well-tested.</p>
+        </div>
+
+        <div class="prd-step">
+          <p class="prd-step-num">Step 6</p>
+          <h2>Go-to-Market</h2>
+          <h3>Phase 1: Private beta (0–500 users)</h3>
+          <p>Direct outreach to knowledge workers with visibly disorganized file systems. Focus on people who describe the "I know this file exists" problem unprompted. Goal: validate core semantic search and collect first 50,000 intent graph events.</p>
+          <h3>Phase 2: Public beta (500–5,000 users)</h3>
+          <p>Product Hunt launch. Focus on macOS power users — developers, writers, consultants, financial professionals. Pricing: free during beta, $8–12/month at launch (competitive with Hazel, CleanMyMac).</p>
+          <h3>Phase 3: Growth (5,000–50,000 users)</h3>
+          <p>App Store submission. Integration with iCloud Drive. Referral mechanics. Partnership conversations with productivity tool makers.</p>
+          <h3>Acquisition trigger</h3>
+          <p>Alfie initiates acquisition conversations when the intent graph reaches meaningful scale — 10,000+ active users generating labeled behavioral data — not at a feature milestone. The dataset maturity is the signal, not the roadmap completion.</p>
+        </div>
+
+        <div class="prd-step">
+          <p class="prd-step-num">Step 7</p>
+          <h2>Metrics and Success</h2>
+          <h3>Dataset quality metrics (acquisition-facing)</h3>
+          <ul>
+            <li>Total labeled intent pairs (failed search → correct file retrieval)</li>
+            <li>Active users generating behavioral signal (30-day cohort)</li>
+            <li>Intent graph coverage (% of user file types represented)</li>
+            <li>Model accuracy improvement rate (semantic search precision over time)</li>
+          </ul>
+          <h3>Product health metrics (user-facing)</h3>
+          <ul>
+            <li>Search success rate — % of queries that surface the correct file in top 3 results</li>
+            <li>Rename suggestion acceptance rate — signals whether suggestions match user intent</li>
+            <li>7-day and 30-day retention — Alfie must become habitual, not occasional</li>
+            <li>Optimization score improvement over first 90 days</li>
+          </ul>
+          <div class="highlight">
+            <p>The primary metric is dataset quality, not revenue. Alfie is optimized to build an irreplaceable behavioral corpus. Revenue validates product-market fit and sustains development; dataset depth drives acquisition value.</p>
+          </div>
+        </div>
+
+        <div class="prd-step">
+          <p class="prd-step-num">Step 8</p>
+          <h2>Agentic Commerce and Future Vision</h2>
+          <p>Phase 4 introduces Alfie's agentic commerce layer — a capability set that transforms Alfie from a file intelligence tool into an ambient productivity agent that acts on file context.</p>
+          <h3>Agentic actions</h3>
+          <ul>
+            <li><strong>Contract review trigger</strong> — Alfie detects an agreement or contract file and surfaces relevant review tools, previous versions, or counterparty context</li>
+            <li><strong>Invoice and receipt processing</strong> — identifies financial documents and offers routing to accounting software or expense systems</li>
+            <li><strong>Research packaging</strong> — groups related files into shareable briefings without manual assembly</li>
+            <li><strong>Renewal detection</strong> — surfaces subscription agreements nearing renewal dates with renewal options</li>
+          </ul>
+          <h3>Why this strengthens the acquisition thesis</h3>
+          <p>Agentic commerce turns Alfie's intent graph into a commerce signal layer — Apple gains not just file behavioral data but purchase intent mapped to document context. For an Apple Intelligence strategy, this is the missing consumer data layer.</p>
+          <div class="highlight">
+            <p>Alfie's long-term vision: every file becomes an intelligent object that knows what it is, what you need to do with it, and when — before you ask.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <button class="nav-logo" onclick="goHome()" style="background:none;border:none;cursor:pointer;">Simon Weldensie</button>
+        <span class="footer-meta">Alfie · Product Requirements Document v1.1</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+function goHome() {
+  document.getElementById('page-home').classList.add('active');
+  document.getElementById('page-alfie').classList.remove('active');
+  window.scrollTo(0, 0);
+}
+function goAlfie() {
+  document.getElementById('page-home').classList.remove('active');
+  document.getElementById('page-alfie').classList.add('active');
+  window.scrollTo(0, 0);
+  setTab('t-case', document.querySelectorAll('.tab-btn')[0]);
+}
+function setTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+</script>
